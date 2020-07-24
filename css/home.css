@@ -1,0 +1,139 @@
+.header .menu{
+    text-align: right;
+    background: #303030;
+    width: 100%;
+    height: 30px;
+    padding: 3px 60px 0px 0px;
+    overflow: hidden;
+}
+.header ul li{
+    display: inline-block;
+    margin-left: 8px;
+}
+.header ul li svg{
+    margin-left:5px;
+}
+.header ul li a{
+    color: #fafafa;
+    text-decoration: none;
+}
+.navbar{
+    margin-left: 20%;
+    display: flex;
+}
+.navbar .logo{
+    width: 20%;
+}
+.navbar .navbar-menu{
+    display: flex;
+    flex-grow: 1;
+}
+.nav-navbar ul li{
+    display: inline-block;
+}
+.navbar-menu a{
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 23px;
+    color: #303030;
+    font-family: inherit;
+}
+.navbar-menu a:hover{
+    text-decoration: none;
+    color: #f15e2c;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    margin-left: 10px;
+}
+.dropdown-hover{
+    display: none;
+    position: absolute;
+}
+.dropdown ul li{
+    display: block;
+    list-style-type: none;
+}
+.dropdown-hover a{
+  text-decoration: none;
+  font-size: 15px;
+  color: #303030;
+  font-weight: normal;
+}
+.dropdown:hover .dropdown-hover{
+    display: block;
+}
+.line{
+    border-right: 2px solid #e3e2e2;
+    display: inline;
+}
+.navbar .search{
+    margin-right: 5%;
+    width: 20%;
+}
+.navbar .search .form-group{
+    display: flex;
+    width: 100%;
+    height: 38px;
+    padding: 10px 13px;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+}
+.navbar .search .form-group .input{
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+    font-size: 18px;
+}
+.navbar .search .form-group .input:focus {     
+    outline: 0;     
+    outline-style: none;     
+    outline-width: 0; 
+}
+.home-collection .title{
+    margin-top: 2rem;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 30px;
+    color: #303030;
+    font-family: inherit;
+}
+.home-collection .row{
+    display: flex;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 15px;
+}
+.home-collection .row .col{
+    overflow: hidden;
+}
+.home-collection .item-group{
+    position: absolute;
+    color: #fafafa;
+    font-size: 23px;
+    font-weight: bold;
+    padding-left: 30%;
+    padding-top: 10%;
+}
+.home-collection .item-group:hover{
+    cursor: pointer;
+    color: #f15e2c;
+}
+.home-collection1 .title{
+    margin-top: 2rem;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 30px;
+    color: #303030;
+    font-family: inherit;
+}
+.home-collection1 .carousel-item{
+    display: flex;
+    padding-left: 10%;
+    padding-right: 10%;
+}
