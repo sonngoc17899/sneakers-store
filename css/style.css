@@ -4,3 +4,15 @@
     box-sizing: border-box;
     /* set width từ border vào */
 }
+.erros{
+    color: red;
+}
+.title{
+    margin-top: 2rem;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 30px;
+    color: #303030;
+    font-family: inherit;
+}

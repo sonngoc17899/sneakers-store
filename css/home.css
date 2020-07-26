@@ -5,21 +5,30 @@
     height: 30px;
     padding: 3px 60px 0px 0px;
     overflow: hidden;
+    align-items: center;
 }
 .header ul li{
     display: inline-block;
     margin-left: 8px;
+    align-items: center!important;
+    color: #fafafa;
 }
 .header ul li svg{
     margin-left:5px;
+    margin-right: 5px;
+    height: 13px;
 }
-.header ul li a{
-    color: #fafafa;
-    text-decoration: none;
+.search:hover{
+    cursor: pointer;
+}
+.header ul li:hover{
+    cursor: pointer;
+    color: #ffba00;
 }
 .navbar{
     margin-left: 20%;
     display: flex;
+    height: 130px;
 }
 .navbar .logo{
     width: 20%;
@@ -93,19 +102,11 @@
     outline-style: none;     
     outline-width: 0; 
 }
-.home-collection .title{
-    margin-top: 2rem;
-    text-align: center;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 30px;
-    color: #303030;
-    font-family: inherit;
-}
+
 .home-collection .row{
     display: flex;
-    padding-left: 15%;
-    padding-right: 15%;
+    padding-left: 10%;
+    padding-right: 10%;
     padding-top: 15px;
 }
 .home-collection .row .col{
@@ -116,24 +117,97 @@
     color: #fafafa;
     font-size: 23px;
     font-weight: bold;
-    padding-left: 30%;
+    padding-left: 23%;
     padding-top: 10%;
 }
 .home-collection .item-group:hover{
     cursor: pointer;
     color: #f15e2c;
 }
-.home-collection1 .title{
-    margin-top: 2rem;
-    text-align: center;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 30px;
-    color: #303030;
-    font-family: inherit;
-}
+
 .home-collection1 .carousel-item{
     display: flex;
     padding-left: 10%;
     padding-right: 10%;
+}
+.footer{
+    display: flex;
+    padding-left: 10%;
+    padding-top: 10px;
+    border-top: 1px solid #bdbdbd;
+    border-bottom: 1px solid #bdbdbd;
+}
+.footer .footer-info{
+    width: 250px;
+}
+.footer .customer{
+    width: 250px;
+}
+.footer .link{
+    width: 250px;
+}
+.footer ul li{
+    display: block;
+}
+.footer ul li{
+    color: #898989;
+    text-decoration: none;
+}
+.footer ul li:hover{
+    color:#000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.footer .title-menu{
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 15px;
+    color: #303030;
+    font-family: inherit;
+}
+.link ul li{
+    display: inline-block;
+}
+.item-seller{
+    display: flex;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.item-seller .img img{
+    width: 200px;
+}
+.item-seller .name{
+   font-size: 16px;
+}
+.item-seller .item{
+    margin-left: 30px;
+}
+.home-collection1{
+    margin-bottom: 20px;
+}
+.item-seller .img img:hover{
+    cursor: pointer;
+}
+.item-seller .name:hover{
+    color: #f15e2c;
+    cursor: pointer;
+ }
+ .dropdown .title-dropdown{
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 23px;
+    color: #303030;
+    font-family: inherit;
+ }
+ .dropdown .title-dropdown:hover{
+    color: #f15e2c;
+    cursor: pointer;
+ }
+ .dropdown .sneakers{
+     color: #898989;
+     font-size: 14px;
+ }
+ .dropdown .sneakers:hover{
+    color: #f15e2c;
+    cursor: pointer;
 }

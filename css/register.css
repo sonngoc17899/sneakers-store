@@ -1,0 +1,39 @@
+.register-name{
+    display: flex;
+}
+#form-register .input-wrapper input{
+    width: 99%;
+    padding: 10px 13px;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+}
+#form-register .input-wrapper{
+ margin-bottom: 10px;
+}
+#dangnhap{
+    margin-left: 8px;
+    text-decoration: underline;
+    color: #898989;;
+}
+#dangnhap:hover{
+    cursor: pointer;
+    color: #000;
+}
+.register-container{
+    margin-bottom: 15px;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+.register-form .name-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.register-form .name-wrapper .input-wrapper{
+    width: 100%;
+}
+.register-form .name-wrapper .input-wrapper input{
+    width: 90%;
+}
+.container-login{
+    margin-bottom: 10px;
+}
