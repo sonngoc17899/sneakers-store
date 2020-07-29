@@ -10,6 +10,9 @@
 .menu #logout{
     display: none;
 }
+.menu #user{
+    display: none;
+}
 .header ul li{
     display: inline-block;
     margin-left: 8px;

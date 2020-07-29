@@ -80,15 +80,10 @@ function search1(e){
     }
 }
 function login(){
-    let logInOut = document.getElementById(`loginout`).value;
-    console.log(logInOut);
-    if(logInOut === `Đăng nhập`){
-    view.setActiveScreen(`loginScreen`);
-    }else view.setActiveScreen(`itemsScreen`);
-    // view.setActiveScreen(`loginScreen`);
+   view.setActiveScreen(`loginScreen`);
 }
-function login1(){
-    view.setActiveScreen(`loginScreen`);
+function user(){
+    view.setActiveScreen(`itemsScreen`);
 }
 function love(){
     view.setActiveScreen(`loveScreen`);
@@ -105,8 +100,8 @@ function sneakers(id){
 function addHang(id){
     let soLuong = document.getElementById(`soluong`).value;
     let size = document.getElementById(`size`).value;
-    let price = document.getElementsByClassName(`price1`).value;
-    controller.addHang(id, soLuong, size. price);
+    // let price = document.getElementsByClassName(`price1`).value;
+    controller.addHang(id, soLuong, size);
 }
 function logout(){
     firebase.auth().signOut();
@@ -332,10 +327,11 @@ view.showFormBrand = (data, id) =>{
 </div>
     `
     let a = [];
+    console.log(data[3]);
     for(let i=0;i<data.length;i++)
     {
         if(data[i].name.toLowerCase().includes(id.trim().toLowerCase()) || data[i].brand.toLowerCase().includes(id.trim().toLowerCase()
-        || data[i].user.includes(id))){
+        || data[i].toLowerCase().user.indexOf(id)>0)){
             a.push(data[i]);
         }
     }
@@ -376,10 +372,8 @@ view.userChange = () =>{
               displayName: user.displayName,
               email: user.email
             }
-        let userLogin = document.getElementById(`loginout`);
-        userLogin.innerHTML = `<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-      </svg>Tài Khoản</div></li>`;
+            document.getElementById(`loginout`).style = `display: none`
+            document.getElementById(`user`).style = `display: block`
             document.getElementById(`logout`).style = `display: block`
           } else {
             view.setActiveScreen('home')
