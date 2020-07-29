@@ -48,3 +48,9 @@ controller.register = (registerInfo) => {
       // view.setActiveScreen(`loginScreen`);
     }
   };
+controller.addHang = (id, soLuong, size) =>{
+  if(soLuong.trim() ===``){
+    view.setErrosMessage(`erros-soluong`, `Nhập số lượng`);
+  }else  view.setErrosMessage(`erros-soluong`, ``);
+  model.addHang(id, soLuong, size, price);
+}

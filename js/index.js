@@ -41,17 +41,17 @@ templateQueryDataBase = () =>{
     })
 }
 templateQueryDataBase1 = () =>{
-  firebase.firestore().collection(model.collectionName).get().then(res => {
-  const data = utils.getDataFromDocs(res.docs)
-  model.sneakers = data;
-  if (data.length > 0) {
-    model.currentSneaker = data[0]
-    // view.showCurrentConversation();
-  }
-  view.find(data);
-  // view.setActiveScreen(`searchScreen`);
-  // view.showInfoSneakers();
-})
+//   firebase.firestore().collection(model.collectionName).get().then(res => {
+//   const data = utils.getDataFromDocs(res.docs)
+//   model.sneakers = data;
+//   if (data.length > 0) {
+//     model.currentSneaker = data[0]
+//     // view.showCurrentConversation();
+//   }
+//   view.find(data);
+//   // view.setActiveScreen(`searchScreen`);
+//   // view.showInfoSneakers();
+// })
 }
 templateQueryDataBase2 = (name) =>{
   firebase.firestore().collection(model.collectionName).get().then(res => {

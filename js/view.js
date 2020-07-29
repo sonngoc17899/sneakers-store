@@ -4,9 +4,11 @@ view.setActiveScreen = (screenName) =>{
         case `home`:
             document.getElementById(`app`).innerHTML = components.home;
             model.loadSneakers();
+            view.userChange();
             break;
         case `searchScreen`:
             document.getElementById(`app`).innerHTML = components.search;
+            view.userChange();
             break;
         case `loginScreen`: 
             document.getElementById(`app`).innerHTML = components.loginScreen;
@@ -45,15 +47,19 @@ view.setActiveScreen = (screenName) =>{
         break;
         case `cartScreen`:
             document.getElementById(`app`).innerHTML = components.cartScreen;
+            view.userChange();
         break;
         case `loveScreen`:
             document.getElementById(`app`).innerHTML = components.loveScreen;
+            view.userChange();
             break;
         case `sneakersScreen`:
             document.getElementById(`app`).innerHTML = components.sneakersScreen;
+            view.userChange();
             break;
         case `itemsScreen`:
             document.getElementById(`app`).innerHTML = components.itemsScreen;
+            view.userChange();
             break;
     }
 }
@@ -66,7 +72,22 @@ function giohang(){
 function search(){
     model.find();
 }
+function search1(e){
+    if(e.key === 'Enter'){
+    let find = document.getElementById(`find`).value;
+    search();
+    e.preventDefault();
+    }
+}
 function login(){
+    let logInOut = document.getElementById(`loginout`).value;
+    console.log(logInOut);
+    if(logInOut === `Đăng nhập`){
+    view.setActiveScreen(`loginScreen`);
+    }else view.setActiveScreen(`itemsScreen`);
+    // view.setActiveScreen(`loginScreen`);
+}
+function login1(){
     view.setActiveScreen(`loginScreen`);
 }
 function love(){
@@ -81,8 +102,16 @@ function home(){
 function sneakers(id){
     model.showFormBrand(id);
 }
-function addHang(){
-    view.pay();
+function addHang(id){
+    let soLuong = document.getElementById(`soluong`).value;
+    let size = document.getElementById(`size`).value;
+    let price = document.getElementsByClassName(`price1`).value;
+    controller.addHang(id, soLuong, size. price);
+}
+function logout(){
+    firebase.auth().signOut();
+    document.getElementById(`logout`).style = `display: none`;
+    document.getElementById(`login`).innerHTML = `Đăng nhập`
 }
 view.showSneakers = (data) =>{
    let img =  document.getElementsByClassName(`img`);
@@ -155,11 +184,11 @@ view.find = (data) =>{
     for(let i=0;i<a.length;i++){
         name[`${i}`].innerHTML = `${a[`${i}`].name}`
         name[i].addEventListener(`click`, ()=>{
-            model.infoSneaker(data[i].name);
+            model.infoSneaker(a[i].name);
         })
         img[`${i}`].innerHTML = `<img src="${a[`${i}`].img}" alt="">`
         img[i].addEventListener(`click`, ()=>{
-            model.infoSneaker(data[i].name);
+            model.infoSneaker(a[i].name);
         })
         price[`${i}`].innerHTML = vnd(a[i].price.toString()) + ` VND`;
    }
@@ -212,15 +241,16 @@ view.showInfo = (name, data) =>{
                 </div>
                 <div class="many">
                 <label for="many">Số lượng:</label>
-                <input type="text" placeholder="Nhập số lượng">
+                <input id="soluong" type="text" placeholder="Nhập số lượng">
+                <div class="erros" id="erros-soluong"></div>
                 </div>
             </div>
             <div class="menu-pay">
             <div class="add-gio-hang">
-            <button onclick="addHang()">THÊM VÀO GIỎ HÀNG</button>
+            <button onclick="addHang('${a[0].name}')">THÊM VÀO GIỎ HÀNG</button>
             </div>
             <div class="pay">
-            <button onclick="thanhtoan()">THANH TOÁN</button>
+            <button onclick="thanhtoan('${a[0].name}')">THANH TOÁN</button>
             </div>
             </div>
         </div>
@@ -241,11 +271,11 @@ view.showInfo = (name, data) =>{
     for(let i=0;i<img.length;i++){
         name1[`${i}`].innerHTML = `${b[i].name}`
         name1[i].addEventListener(`click`, ()=>{
-            model.infoSneaker(data[i].name);
+            model.infoSneaker(b[i].name);
         })
         img[`${i}`].innerHTML = `<img src="${b[i].img}" alt="">`
         img[i].addEventListener(`click`, ()=>{
-            model.infoSneaker(data[i].name);
+            model.infoSneaker(b[i].name);
         })
         price[`${i}`].innerHTML = vnd(b[i].price.toString()) + ` VND`;
    }
@@ -267,9 +297,12 @@ view.showFormBrand = (data, id) =>{
         <ul>
             <li><a href="../html/index.html">Trang chủ</a></li>
             <li>></li>
-            <li>Giày ${id}</li>
+            <li>${id}</li>
         </ul>
     </div>
+    </div>
+    <div class="show-info-container">
+        <div class="title-show1"><h1>${id.toUpperCase()}</h1></div>
     </div>
     <div class="list-seller">
     <div class="item-seller">
@@ -301,11 +334,26 @@ view.showFormBrand = (data, id) =>{
     let a = [];
     for(let i=0;i<data.length;i++)
     {
-        if(data[i].name.toLowerCase().includes(id.trim().toLowerCase()) || data[i].brand.includes(id)){
+        if(data[i].name.toLowerCase().includes(id.trim().toLowerCase()) || data[i].brand.toLowerCase().includes(id.trim().toLowerCase()
+        || data[i].user.includes(id))){
             a.push(data[i]);
         }
     }
-    console.log(data);
+    console.log(a);
+    let img =  document.getElementsByClassName(`img`);
+    let name1 = document.getElementsByClassName(`name`);
+    let price = document.getElementsByClassName(`price`);
+    for(let i=0;i<a.length;i++){
+        name1[i].innerHTML = `${a[i].name}`
+        name1[i].addEventListener(`click`, ()=>{
+            model.infoSneaker(a[i].name);
+        })
+        img[`${i}`].innerHTML = `<img src="${a[i].img}" alt="">`
+        img[i].addEventListener(`click`, ()=>{
+            model.infoSneaker(a[i].name);
+        })
+        price[`${i}`].innerHTML = vnd(a[i].price.toString()) + ` VND`;
+   }
 }
 function vnd(a){
     let b = a.split(``);
@@ -318,4 +366,25 @@ function vnd(a){
     }
     let c = b.join(``);
     return c;
+}
+view.userChange = () =>{
+     firebase.auth().onAuthStateChanged((user) => {
+        // console.log(user)
+        if(user) {
+          if (user.emailVerified) {
+            model.currentUser = {
+              displayName: user.displayName,
+              email: user.email
+            }
+        let userLogin = document.getElementById(`loginout`);
+        userLogin.innerHTML = `<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+      </svg>Tài Khoản</div></li>`;
+            document.getElementById(`logout`).style = `display: block`
+          } else {
+            view.setActiveScreen('home')
+            // alert('Please verify your email')
+          }
+    }
+    })
 }

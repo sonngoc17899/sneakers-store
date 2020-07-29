@@ -4,7 +4,7 @@ let header = `<div class="header">
     <li><div onclick="love()"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
       </svg>Yêu thích</div></li>
-    <li><div onclick="login()">
+    <li><div id="loginout" onclick="login()">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
           </svg>Đăng nhập</div></li>
@@ -12,6 +12,10 @@ let header = `<div class="header">
         <path fill-rule="evenodd" d="M14 5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5zM1 4v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4H1z"/>
         <path d="M8 1.5A2.5 2.5 0 0 0 5.5 4h-1a3.5 3.5 0 1 1 7 0h-1A2.5 2.5 0 0 0 8 1.5z"/>
       </svg>Giỏ hàng</div></li>
+      <li><div id="logout" onclick="logout()"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-power" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z"/>
+      <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z"/>
+    </svg>Đăng xuất</div></li>
 </ul>
 </div>
 <div class="navbar">
@@ -19,10 +23,10 @@ let header = `<div class="header">
 <div class="navbar-menu">
 <ul class="nav-navbar">
     <li class="dropdown">
-        <div class="title-dropdown" onclick="sneakers('Tất cả sản phẩm)">SẢN PHẨM</div>
+        <div class="title-dropdown" onclick="sneakers(' ')">SẢN PHẨM</div>
         <ul class="dropdown-hover">
-            <li class="sneakers" id="sneakerMan" onclick="sneakers('Nam')">CHO NAM</li>
-            <li class="sneakers" id="sneakerWomen" onclick="sneakers('Nữ')">CHO NỮ</li>
+            <li class="sneakers" id="sneakerMan" onclick="sneakers('nam')">Cho nam</li>
+            <li class="sneakers" id="sneakerWomen" onclick="sneakers('nữ')">Cho nữ</li>
         </ul>
     </li>
     <li class="line"></li>
@@ -44,14 +48,12 @@ let header = `<div class="header">
 </ul>
 </div>
 <div class="search">
-    <form>
-        <div class="form-group">
-            <input id="find" type="text" class="input" placeholder="Tìm kiếm">
-            <svg onclick="search()" style="color: blue" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <form class="form-group" autocomplete="off">
+            <input required onkeypress="search1(event)" id="find" type="text" class="input" placeholder="Tìm kiếm">
+            <svg onclick="search()" style="color: blue;" width="1.5rem" height="38px" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
             <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
           </svg>
-        </div>
     </form>
 </div>
 </div>`
@@ -67,13 +69,13 @@ let footer = `<div class="footer">
   <div class="title-menu">GIỚI THIỆU</div>
   <ul class="list-menu">
     <li onclick="home()">Trang chủ</li>
-    <li onclick="sneakers()">Sản Phẩm</li>
+    <li onclick="sneakers(' ')">Sản Phẩm</li>
   </ul>
 </div>
 <div class="customer">
   <div class="title-menu">HỖ TRỢ KHÁCH HÀNG</div>
   <ul class="list-menu">
-    <li onclick="login()">Đăng nhập</li>
+    <li onclick="login1()">Đăng nhập</li>
     <li onclick="register()">Đăng kí</li>
     <li onclick="giohang()">Giỏ hàng</li>
   </ul>
@@ -101,13 +103,13 @@ components.home = `${header}
     </ol>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <img class="d-block w-100" src="../images/slider_1.png" alt="First slide" style="height: 550px;">
+        <img class="d-block w-100" src="../images/slider_1.png" alt="First slide" style="height: 400px;">
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="../images/banner-slide-FOG.jpg" alt="Second slide" style="height:550px;">
+        <img class="d-block w-100" src="../images/banner-slide-FOG.jpg" alt="Second slide" style="height:400px;">
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="../images/SB2019-x-Converse-poster.jpg" alt="Third slide" style="height: 550px;">
+        <img class="d-block w-100" src="../images/SB2019-x-Converse-poster.jpg" alt="Third slide" style="height: 400px;">
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

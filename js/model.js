@@ -15,6 +15,7 @@ firebase.auth().createUserWithEmailAndPassword(email, password).then((user) =>{
     }).catch((err) => {
         alert(err.message);
     })
+    // firebase.firestore().collection(`cart`).add(email);
 }
 model.login = (email, password) =>{
     firebase.auth().signInWithEmailAndPassword(email, password).then((user) =>{
@@ -33,11 +34,24 @@ model.loadSneakers = () => {
     templateQueryDataBase();
 }
 model.find = () =>{
-    templateQueryDataBase1();
+    firebase.firestore().collection(model.collectionName).get().then(res => {
+        const data = utils.getDataFromDocs(res.docs)
+        model.sneakers = data;
+        if (data.length > 0) {
+          model.currentSneaker = data[0]
+          // view.showCurrentConversation();
+        }
+        view.find(data);
+        // view.setActiveScreen(`searchScreen`);
+        // view.showInfoSneakers();
+      })
 }
 model.infoSneaker = (name) =>{
     templateQueryDataBase2(name);
 }
 model.showFormBrand = (id) =>{
     templateQueryDataBase3(id);
+}
+model.addHang = (id, soLuong, size, price) =>{
+    // firebase.firestore().collection(`cart`)
 }
