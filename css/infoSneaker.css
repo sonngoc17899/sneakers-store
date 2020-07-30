@@ -31,15 +31,15 @@
 .info-detail .size-many .many{
     font-size: 18px;
     font-weight: bold;
-    margin-left: 5rem;
+    margin-left: 8rem;
 }
 .info-detail .size-many .size select{
     width: 120px;
     border: 1px solid #dbdbdb;
     height: 30px;
 }
-.info-detail .size-many .many input{
-    width: 250px;
+.info-detail .size-many .many select{
+    width: 120px;
     border: 1px solid #dbdbdb;
     height: 30px;
 }
