@@ -1,9 +1,6 @@
 const components = {};
 let header = `<div class="header">
 <ul class="menu">
-    <li><div onclick="love()"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-      </svg>Yêu thích</div></li>
     <li><div id="loginout" onclick="login()">
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -27,10 +24,6 @@ let header = `<div class="header">
 <ul class="nav-navbar">
     <li class="dropdown">
         <div class="title-dropdown" onclick="sneakers(' ')">SẢN PHẨM</div>
-        <ul class="dropdown-hover">
-            <li class="sneakers" id="sneakerMan" onclick="sneakers('nam')">Cho nam</li>
-            <li class="sneakers" id="sneakerWomen" onclick="sneakers('nữ')">Cho nữ</li>
-        </ul>
     </li>
     <li class="line"></li>
     <li class="dropdown">
@@ -130,23 +123,23 @@ components.home = `${header}
 <div class="row">
     <div class="col">
       <div class="item-bg">
-        <div class="item-group" onclick="click()">
-          GIÀY NAM
+        <div class="item-group" onclick="sneakers('vans')">
+          VANS
         </div>
         <img src="../images/sneaker-man.jpg" alt="" style="height: 220px; width: 100%;">
       </div>
     </div>
     <div class="col">
       <div class="item-bg">
-        <div class="item-group">
-          GIÀY NỮ
+        <div onclick="sneakers('converse')" class="item-group">
+          CONVERSE
         </div>
         <img src="../images/sneaker-women.jpg" alt="" style="height: 220px; width: 100%;">
       </div>
     </div>
     <div class="col">
       <div class="item-bg">
-        <div class="item-group">
+        <div onclick="sneakers(' ')" class="item-group">
           DÒNG SẢN PHẨM
         </div>
         <img src="../images/Tiger_Patchwork_Thumbnail.png" alt="" style="height: 220px; width: 100%;">
@@ -180,6 +173,11 @@ ${header}
 <div id="show-info-sneakers"></div>
 ${footer}
 ` 
+components.finishScreen = `
+${header}
+<div class="finish"><h2>Đặt hàng thành công</h2></div>
+${footer}
+`
 components.cartScreen = `
 ${header}
 ${footer}
@@ -189,8 +187,68 @@ ${header}
 <div id="show-items"></div>
 ${footer}
 `
-components.loveScreen = `
+components.payScreen = `
 ${header}
+<div class="title-login">
+    <div class="col">
+        <ul>
+            <li><a href="../html/index.html">Trang chủ</a></li>
+            <li>></li>
+            <li>Thanh toán sản phẩm</li>
+        </ul>
+    </div>
+    </div>
+<div class="pay-container">
+   <div class="info-user">
+     <h2>Thông tin mua hàng</h2>
+     <div class="register-form">
+      <form id="form-register">
+              <div class="input-wrapper">
+                  <input id="name-user" type="text" name="firstName" placeholder="Họ và tên">
+              <div class="erros" id="erros-name"></div>
+              </div>
+          <div class="input-wrapper">
+              <input id="email-user" type="text" name="email" placeholder="Email">
+              <div class="erros" id="erros-email-name"></div>
+          </div>
+          <div class="input-wrapper">
+              <input id="phone-user" type="text" name="phone" placeholder="Số điện thoại">
+              <div class="erros" id="erros-phone"></div>
+          </div>
+          <div class="input-wrapper">
+              <input id="address-user" type="text" name="address" placeholder="Địa chỉ">
+              <div class="erros" id="erros-address"></div>
+          </div>
+          <div class="input-wrapper">
+            <input id="country-user"type="text" name="country" placeholder="Tỉnh Thành">
+            <div class="erros" id="erros-country"></div>
+        </div>
+   </div>
+   <textarea name="node" id="node" placeholder="Ghi chú" cols="30" rows="10"></textarea>
+  </div>
+   <div class="hinhthuc-thanhtoan">
+      <h2>Thanh toán</h2>
+      <div>Thanh toán khi giao hàng(COD)</div>
+   </div>
+   <div class="info-item">
+   <h2>Đơn hàng</h2>
+      <div class="donhang">
+        <div class="img"></div>
+        <div class="name"></div>
+        <div class="size-many">
+          <div class="size">
+          <div id="size"></div>
+          </div>
+          <div class="many">
+          <div id="soluong"></div>
+          </div>
+          <div class="tong-tien">21324</div>
+            <button onclick="xacnhan()" class="button-hang">Đặt hàng</button>
+      </div>
+      </div>
+   </div>
+      </div>
+
 ${footer}
 `
 components.sneakersScreen = `

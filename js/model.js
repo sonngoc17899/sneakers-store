@@ -16,6 +16,12 @@ firebase.auth().createUserWithEmailAndPassword(email, password).then((user) =>{
         alert(err.message);
     })
 }
+model.createUser = (email, name) =>{
+    let user = {email, name}
+     firebase.firestore().collection(`cart`).add(user).then(res =>{
+        alert(`Added!`);
+    })
+}
 model.login = (email, password) =>{
     firebase.auth().signInWithEmailAndPassword(email, password).then((user) =>{
         console.log(user);
@@ -51,24 +57,24 @@ model.infoSneaker = (name) =>{
 model.showFormBrand = (id) =>{
     templateQueryDataBase3(id);
 }
-model.addHang = (user) =>{
+model.addHang = (user) =>{ 
+      firebase.firestore().collection(`cart`).doc(`cc5XcxAbTTRv5DZfAqFn`).update(user).then(res =>{
+        alert(`Thêm vào giỏ hàng thành công`);
+    })
+}
+model.thanhtoan = (id, soLuong, size) =>{
     firebase.firestore().collection(model.collectionName).get().then(res => {
         const data = utils.getDataFromDocs(res.docs)
         model.sneakers = data;
         if (data.length > 0) {
-          model.currentSneaker = data[0];
+          model.currentSneaker = data[0]
+          // view.showCurrentConversation();
         }
-        for(let i=0;i<data.length;i++)
-        {
-            if(data.name.toLowerCase().includes(user.id)){
-                user.price = data[i].price;
-            }
-        }
+        view.thanhtoan(data, id, soLuong, size);
+        // view.setActiveScreen(`searchScreen`);
+        // view.showInfoSneakers();
       })
-  
-console.log(user);
-//  firebase.firestore().collection(`cart`).add(user).then(res =>{
-//         alert(`Added!`);
-//         console.log(user);
-//     })
+}
+model.xacnhan = () =>{
+    view.setActiveScreen(`finishScreen`);
 }

@@ -4,7 +4,6 @@ view.setActiveScreen = (screenName) =>{
         case `home`:
             document.getElementById(`app`).innerHTML = components.home;
             model.loadSneakers();
-            view.userChange();
             break;
         case `searchScreen`:
             document.getElementById(`app`).innerHTML = components.search;
@@ -25,6 +24,7 @@ view.setActiveScreen = (screenName) =>{
         newUser.addEventListener(`click`, (e) =>{
             view.setActiveScreen(`registerScreen`);
         });
+
         break;
         case `registerScreen`:
             document.getElementById(`app`).innerHTML = components.registerScreen;
@@ -49,8 +49,8 @@ view.setActiveScreen = (screenName) =>{
             document.getElementById(`app`).innerHTML = components.cartScreen;
             view.userChange();
         break;
-        case `loveScreen`:
-            document.getElementById(`app`).innerHTML = components.loveScreen;
+        case `payScreen`:
+            document.getElementById(`app`).innerHTML = components.payScreen;
             view.userChange();
             break;
         case `sneakersScreen`:
@@ -60,6 +60,9 @@ view.setActiveScreen = (screenName) =>{
         case `itemsScreen`:
             document.getElementById(`app`).innerHTML = components.itemsScreen;
             view.userChange();
+            break;
+        case `finishScreen`:
+            document.getElementById(`app`).innerHTML = components.finishScreen;
             break;
     }
 }
@@ -85,9 +88,6 @@ function login(){
 function user(){
     view.setActiveScreen(`itemsScreen`);
 }
-function love(){
-    view.setActiveScreen(`loveScreen`);
-}
 function register(){
     view.setActiveScreen(`registerScreen`)
 }
@@ -103,10 +103,23 @@ function addHang(id){
     // let price = document.getElementsByClassName(`price1`).value;
     controller.addHang(id, soLuong, size);
 }
+function thanhtoan(id){
+    let soLuong = document.getElementById(`soluong`).value;
+    let size = document.getElementById(`size`).value;
+    controller.thanhtoan(id, soLuong, size);
+}
 function logout(){
     firebase.auth().signOut();
     document.getElementById(`logout`).style = `display: none`;
     document.getElementById(`login`).innerHTML = `Đăng nhập`
+}
+function xacnhan(){
+    let name = document.getElementById(`name-user`).value;
+    let email = document.getElementById(`email-user`).value;
+    let phone = document.getElementById(`phone-user`).value;
+    let address = document.getElementById(`address-user`).value;
+    let country = document.getElementById(`country-user`).value;
+    controller.xacnhan(name, email, phone, address, country);
 }
 view.showSneakers = (data) =>{
    let img =  document.getElementsByClassName(`img`);
@@ -245,7 +258,7 @@ view.showInfo = (name, data) =>{
             <button onclick="addHang('${a[0].name}')">THÊM VÀO GIỎ HÀNG</button>
             </div>
             <div class="pay">
-            <button onclick="thanhtoan('${a[0].name}')">THANH TOÁN</button>
+            <button onclick="thanhtoan('${a[0].name}')">MUA HÀNG</button>
             </div>
             </div>
         </div>
@@ -364,7 +377,7 @@ function vnd(a){
     return c;
 }
 view.userChange = () =>{
-     firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged((user) => {
         // console.log(user)
         if(user) {
           if (user.emailVerified) {
@@ -373,12 +386,36 @@ view.userChange = () =>{
               email: user.email
             }
             document.getElementById(`loginout`).style = `display: none`
-            document.getElementById(`user`).style = `display: block`
+            document.getElementById(`user`).style = `display: none`
             document.getElementById(`logout`).style = `display: block`
           } else {
-            view.setActiveScreen('home')
+            document.getElementById(`loginout`).style = `display: block`
+            // view.setActiveScreen('home')
             // alert('Please verify your email')
           }
     }
     })
+}
+view.thanhtoan = (data, id, soLuong, size) =>{
+    let a = [];
+    for(let i=0;i<data.length;i++)
+    {
+        if(data[i].name === id)
+        {
+            a.push(data[i]);
+        }
+    }
+    console.log(a);
+    view.setActiveScreen(`payScreen`);
+    let name = document.getElementsByClassName(`name`);
+    let img = document.getElementsByClassName(`img`);
+    let price = document.getElementsByClassName(`tong-tien`);
+    let many = document.getElementById(`soluong`);
+    let size1 = document.getElementById(`size`);
+    img[0].innerHTML = `<img src="${a[0].img}" alt="">`
+    name[0].innerHTML = `Sản phẩm: ` + id
+    price[0].innerHTML = `Tổng tiền: ` + vnd((a[0].price*soLuong).toString()) + ` VND`;
+    many.innerHTML = `Số lượng: `+ soLuong;
+    size1.innerHTML = `Size: ` + size;
+
 }

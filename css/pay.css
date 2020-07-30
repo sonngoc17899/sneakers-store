@@ -1,0 +1,69 @@
+.pay-container{
+    display: flex;
+    padding-left: 25px;
+    padding-right: 15px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+.pay-container .info-user{
+    width: 40%;
+}
+.pay-container .info-user textarea{
+    border: 1px solid #bdbdbd;
+    width: 400px;
+    height: 70px;
+}
+h2{
+    font-family: Helvetica Neue,sans-serif;
+    font-weight: 1.5rem;
+}
+.pay-container .info-user textarea:focus{
+    outline: 0;     
+    outline-style: none;     
+    outline-width: 0; 
+    border-color: #66afe9;
+}
+.pay-container .hinhthuc-thanhtoan{
+    width: 250px;
+}
+.pay-container .info-item{
+    margin-left: 100px;
+}
+.pay-container #form-register .input-wrapper input{
+    width: 80%;
+    padding: 10px 13px;
+    border: 1px solid #bdbdbd;
+    border-radius: 5px;
+}
+.pay-container #form-register .input-wrapper input:focus{
+    outline: 0;     
+    outline-style: none;     
+    outline-width: 0; 
+    border-color: #66afe9;
+}
+.pay-container #form-register .input-wrapper{
+ margin-bottom: 10px;
+}
+.info-item .many input:focus{
+    outline: 0;     
+    outline-style: none;     
+    outline-width: 0; 
+    border-color: #66afe9;
+}
+.donhang .img img{
+    height: 150px;
+}
+.button-hang{
+    border-radius: 4px;
+    color: #ffffff;
+    background-color: #66afe9;
+    width: 100px;
+    height: 40px;
+    border: none;
+}
+.button-hang:hover{
+    cursor: pointer;
+}
+.info-item .tong-tien{
+    margin-bottom: 25px;
+}

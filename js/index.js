@@ -9,25 +9,26 @@ window.onload = () =>{
         appId: "1:556876670312:web:8c37d9b77a95395cb0a2dd"
       };
     firebase.initializeApp(firebaseConfig);
-    // firebase.auth().onAuthStateChanged((user) => {
-    //     // console.log(user)
-    //     if(user) {
-    //       if (user.emailVerified) {
-    //         model.currentUser = {
-    //           displayName: user.displayName,
-    //           email: user.email
-    //         }
-    //         view.setActiveScreen('home')
-    //       } else {
-    //         view.setActiveScreen('home')
-    //         // alert('Please verify your email')
-    //       }
-    //     } else {
-    //       view.setActiveScreen('home')
-    //     }
-    //   })
-      // templateQueryDataBase();
-      view.setActiveScreen(`home`);
+    view.setActiveScreen(`home`);
+    firebase.auth().onAuthStateChanged((user) => {
+      // console.log(user)
+      if(user) {
+        if (user.emailVerified) {
+          model.currentUser = {
+            displayName: user.displayName,
+            email: user.email
+          }
+           document.getElementById(`loginout`).style = `display: none`
+          document.getElementById(`user`).style = `display: block`
+          document.getElementById(`logout`).style = `display: block`
+        } else {
+          // document.getElementById(`loginout`).style = `display: block`
+          // view.setActiveScreen('home')
+          // alert('Please verify your email')
+        }
+  }
+  })
+
 }
 templateQueryDataBase = () =>{
       firebase.firestore().collection(model.collectionName).get().then(res => {
