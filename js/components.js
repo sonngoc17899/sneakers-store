@@ -123,26 +123,25 @@ components.home = `${header}
 <div class="row">
     <div class="col">
       <div class="item-bg">
-        <div class="item-group" onclick="sneakers('vans')">
+        <div class="item-group background" onclick="sneakers('vans')">
           VANS
         </div>
-        <img src="../images/sneaker-man.jpg" alt="" style="height: 220px; width: 100%;">
+        
       </div>
     </div>
     <div class="col">
       <div class="item-bg">
-        <div onclick="sneakers('converse')" class="item-group">
+        <div onclick="sneakers('converse')" class="item-group background1">
           CONVERSE
         </div>
-        <img src="../images/sneaker-women.jpg" alt="" style="height: 220px; width: 100%;">
+        
       </div>
     </div>
     <div class="col">
       <div class="item-bg">
-        <div onclick="sneakers(' ')" class="item-group">
+        <div onclick="sneakers(' ')" class="item-group background2">
           DÒNG SẢN PHẨM
         </div>
-        <img src="../images/Tiger_Patchwork_Thumbnail.png" alt="" style="height: 220px; width: 100%;">
       </div>
     </div>
 </div>

@@ -15,7 +15,7 @@ view.setActiveScreen = (screenName) =>{
              loginForm.addEventListener(`submit`, (e) => {
             e.preventDefault();
             const loginInfo = {
-             email: loginForm.email.value,
+            email: loginForm.email.value,
             password: loginForm.password.value,
         };
         controller.login(loginInfo);
@@ -24,7 +24,6 @@ view.setActiveScreen = (screenName) =>{
         newUser.addEventListener(`click`, (e) =>{
             view.setActiveScreen(`registerScreen`);
         });
-
         break;
         case `registerScreen`:
             document.getElementById(`app`).innerHTML = components.registerScreen;

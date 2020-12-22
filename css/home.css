@@ -116,19 +116,34 @@
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 15px;
+    margin: 0px;
 }
 .home-collection .row .col{
     overflow: hidden;
 }
+.background{
+    background-image: url('../images/sneaker-man.jpg');
+    background-position: center;
+    background-size: cover;
+}
+.background1{
+    background-image: url('../images/sneaker-women.jpg');
+    background-position: center;
+    background-size: cover;
+}
+.background2{
+    background-image: url('../images/Tiger_Patchwork_Thumbnail.png');
+    background-position: center;
+    background-size: cover;
+}
 .home-collection .item-group{
-    position: absolute;
-    color: #fafafa;
+    color: #d1b5b5;
     font-size: 23px;
     font-weight: bold;
-    padding-right: 25%;
     padding-top: 20px;
-    padding-left: 98px;
     text-align: center;
+    height: 200px;
+
 }
 .home-collection .item-group:hover{
     cursor: pointer;
@@ -139,6 +154,7 @@
     display: flex;
     padding-left: 10%;
     padding-right: 10%;
+
 }
 .footer{
     display: flex;
